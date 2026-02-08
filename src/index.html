@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>787 Vault | Secure Notes</title>
+    <link rel="icon" href="../787.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-theme">
+
+    <!-- Lock Screen -->
+    <div id="lock-screen" class="overlay">
+        <div class="lock-card">
+            <div class="lock-icon">⚡</div>
+            <h1 id="lock-title">787 Vault</h1>
+            <p id="lock-msg">Sisteme erişmek için şifrenizi girin.</p>
+            <div class="input-group">
+                <input type="password" id="master-password" placeholder="ACCESS KEY" autofocus>
+            </div>
+            <button id="unlock-btn" class="glow-btn">Kilidi Aç</button>
+            <div id="lock-error" class="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-panel" class="hidden">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <h2>787 Vault</h2>
+                    <div class="header-actions">
+                        <button id="import-btn" class="tool-btn" title="İçe Aktar">📥</button>
+                        <button id="new-note-btn" class="tool-btn highlight" title="Yeni Not">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="search-notes" placeholder="Notlarda ara...">
+            </div>
+
+            <div id="notes-list" class="notes-list">
+                <!-- Notes -->
+            </div>
+
+            <div class="sidebar-footer">
+                <button id="change-pwd-trigger" class="stealth-btn"
+                    style="margin-bottom: 0.5rem; border-color: var(--accent-primary); color: var(--accent-primary);">Şifre
+                    Değiştir</button>
+                <button id="lock-app-btn" class="stealth-btn">Sistemi Kilitle</button>
+                <div id="credits-trigger" class="credits" style="cursor: pointer;" title="Dosya yolunu göster">Created
+                    by Zywexx • Powered by 787</div>
+                <div id="vault-path-display" class="vault-path hidden"></div>
+            </div>
+        </div>
+
+        <!-- Editor -->
+        <div class="editor-area">
+            <!-- Change Password Modal (Hidden) -->
+            <div id="password-modal" class="overlay hidden">
+                <div class="lock-card" style="width: 350px;">
+                    <div class="lock-icon" style="font-size: 1.5rem;">🔑</div>
+                    <h1 style="font-size: 1.1rem;">Şifre Değiştir</h1>
+                    <p style="font-size: 0.75rem;">Verileriniz yeni şifreyle yeniden şifrelenecek.</p>
+                    <div class="input-group">
+                        <input type="password" id="old-password" placeholder="ESKİ ŞİFRE">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="new-password" placeholder="YENİ ŞİFRE">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="confirm-password" placeholder="YENİ ŞİFRE (TEKRAR)">
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="cancel-pwd-btn" class="glow-btn"
+                            style="border-color: var(--border); color: var(--text-muted);">İptal</button>
+                        <button id="confirm-pwd-btn" class="glow-btn">Güncelle</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-header">
+                <input type="text" id="note-title" placeholder="BAŞLIK BELİRLE..." readonly>
+                <div class="actions">
+                    <div id="save-status"
+                        style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;"></div>
+                    <button id="save-note-btn" class="action-btn save">Kaydet</button>
+                    <button id="delete-note-btn" class="action-btn delete">Sil</button>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <!-- Find & Replace Bar (Hidden by default) -->
+                <div id="find-replace-bar" class="find-replace-bar hidden">
+                    <span class="close-fr" id="close-fr">✕</span>
+                    <div class="find-replace-row">
+                        <input type="text" id="find-input" placeholder="Bul...">
+                        <button class="action-btn fr-btn" id="find-next-btn">Sonraki</button>
+                    </div>
+                    <div class="find-replace-row" id="replace-row">
+                        <input type="text" id="replace-input" placeholder="Değiştir...">
+                        <button class="action-btn fr-btn" id="replace-btn">Değiştir</button>
+                        <button class="action-btn fr-btn" id="replace-all-btn">Tümünü Değiştir</button>
+                    </div>
+                </div>
+
+                <textarea id="note-content" placeholder="// Notlarını buraya yaz..." readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>

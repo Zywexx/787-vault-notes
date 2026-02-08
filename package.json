@@ -1,0 +1,35 @@
+{
+  "name": "787-vault",
+  "version": "1.0.0",
+  "description": "787 Vault - Secure Zero-Knowledge Note Manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.787vault.app",
+    "productName": "787 Vault",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "787.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "package.json"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
